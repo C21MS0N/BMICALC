@@ -103,7 +103,7 @@
       }
 
       const heightInMeters = heightInCm / 100;
-      const bmi = weight / (heightInMeters * heightInMeters);
+      const bmi = weight / (heightInMeters ** 2);
       const roundedBMI = Math.round(bmi);
 
       let message = "";
