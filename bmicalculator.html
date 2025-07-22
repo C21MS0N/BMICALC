@@ -104,7 +104,7 @@
 
       const heightInMeters = heightInCm / 100;
       const bmi = weight / (heightInMeters * heightInMeters);
-      const roundedBMI = Math.round(bmi * 100) / 100;
+      const roundedBMI = Math.round(bmi);
 
       let message = "";
       if (bmi < 18.5) {
@@ -114,7 +114,7 @@
       } else if (bmi < 30) {
         message = "You are overweight.";
       } else {
-        message = "You are obese.";
+        message = "You are obese AF.";
       }
 
       const finalMessage = "Your BMI is " + roundedBMI + ". " + message;
