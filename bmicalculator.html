@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Caesar Dressing', cursive;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1, #84fab0, #8fd3f4, #a6c1ee);
+      background-size: 300% 300%;
+      animation: gradientFlow 18s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bmi-container {
+      background-color: #ffffffee;
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #222;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: inherit;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bmi-container">
+    <h2>BMI Calculator</h2>
+    <input type="text" id="weightInput" placeholder="Weight in kg">
+    <input type="text" id="heightInput" placeholder="Height in cm">
+    <button onclick="calculateBMI()">Calculate</button>
+    <div class="result" id="bmiOutput"></div>
+  </div>
+
+  <script>
+    function calculateBMI() {
+      // Get user input values from the input fields
+      const weightText = document.getElementById("weightInput").value;
+      const heightText = document.getElementById("heightInput").value;
+
+      // Convert the inputs to numbers
+      const weight = Number(weightText);
+      const heightInCm = Number(heightText);
+
+      // Log inputs to the console for debugging
+      console.log("Weight entered:", weight);
+      console.log("Height entered:", heightInCm);
+
+      // Check if the inputs are valid numbers
+      if (weight <= 0 || heightInCm <= 0 || isNaN(weight) || isNaN(heightInCm)) {
+        console.warn("Invalid input detected");
+        document.getElementById("bmiOutput").innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      // Convert height from centimeters to meters
+      const heightInMeters = heightInCm / 100;
+
+      // Calculate BMI using the formula
+      const bmi = weight / (heightInMeters * heightInMeters);
+
+      // Round BMI to 2 decimal places
+      const roundedBMI = Math.round(bmi * 100) / 100;
+
+      // Determine the message based on BMI value
+      let message = "";
+      if (bmi < 18.5) {
+        message = "You are underweight.";
+      } else if (bmi < 25) {
+        message = "You have a normal weight.";
+      } else if (bmi < 30) {
+        message = "You are overweight.";
+      } else {
+        message = "You are obese.";
+      }
+
+      // Combine BMI and message into a final output
+      const finalMessage = "Your BMI is " + roundedBMI + ". " + message;
+
+      // Log the result message to the console
+      console.log("Result message:", finalMessage);
+
+      // Display the result in the browser
+      document.getElementById("bmiOutput").innerText = finalMessage;
+    }
+  </script>
+
+</body>
+</html>
