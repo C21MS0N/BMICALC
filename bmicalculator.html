@@ -92,23 +92,18 @@
     function calculateBMI() {
       const weightText = document.getElementById("weightInput").value;
       const heightText = document.getElementById("heightInput").value;
-
       const weight = Number(weightText);
       const heightInCm = Number(heightText);
-
-      console.log("Weight entered:", weight);
-      console.log("Height entered:", heightInCm);
+      const output = document.getElementById("bmiOutput");
 
       if (weight <= 0 || heightInCm <= 0 || isNaN(weight) || isNaN(heightInCm)) {
-        console.warn("Invalid input detected");
-        document.getElementById("bmiOutput").innerText = "Please enter valid numbers.";
+        output.innerText = "❌ Please enter valid numbers.";
+        output.style.color = "red";
         return;
       }
 
       const heightInMeters = heightInCm / 100;
-
       const bmi = weight / (heightInMeters * heightInMeters);
-
       const roundedBMI = Math.round(bmi * 100) / 100;
 
       let message = "";
@@ -123,10 +118,8 @@
       }
 
       const finalMessage = "Your BMI is " + roundedBMI + ". " + message;
-
-      console.log("Result message:", finalMessage);
-
-      document.getElementById("bmiOutput").innerText = finalMessage;
+      output.innerText = finalMessage;
+      output.style.color = "#333";
     }
   </script>
 
