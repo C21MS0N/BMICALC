@@ -90,35 +90,27 @@
 
   <script>
     function calculateBMI() {
-      // Get user input values from the input fields
       const weightText = document.getElementById("weightInput").value;
       const heightText = document.getElementById("heightInput").value;
 
-      // Convert the inputs to numbers
       const weight = Number(weightText);
       const heightInCm = Number(heightText);
 
-      // Log inputs to the console for debugging
       console.log("Weight entered:", weight);
       console.log("Height entered:", heightInCm);
 
-      // Check if the inputs are valid numbers
       if (weight <= 0 || heightInCm <= 0 || isNaN(weight) || isNaN(heightInCm)) {
         console.warn("Invalid input detected");
         document.getElementById("bmiOutput").innerText = "Please enter valid numbers.";
         return;
       }
 
-      // Convert height from centimeters to meters
       const heightInMeters = heightInCm / 100;
 
-      // Calculate BMI using the formula
       const bmi = weight / (heightInMeters * heightInMeters);
 
-      // Round BMI to 2 decimal places
       const roundedBMI = Math.round(bmi * 100) / 100;
 
-      // Determine the message based on BMI value
       let message = "";
       if (bmi < 18.5) {
         message = "You are underweight.";
@@ -130,13 +122,10 @@
         message = "You are obese.";
       }
 
-      // Combine BMI and message into a final output
       const finalMessage = "Your BMI is " + roundedBMI + ". " + message;
 
-      // Log the result message to the console
       console.log("Result message:", finalMessage);
 
-      // Display the result in the browser
       document.getElementById("bmiOutput").innerText = finalMessage;
     }
   </script>
